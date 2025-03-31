@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Isaac\\Desktop\\devprojects\\PizzaDinner\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6861EA67-78DD-4645-A74B-25B02BCD3548}|PizzaDinner\\PizzaDinner.csproj|c:\\users\\isaac\\desktop\\devprojects\\pizzadinner\\pizzadinner\\data\\migrations\\20250331110444_creacioninicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6861EA67-78DD-4645-A74B-25B02BCD3548}|PizzaDinner\\PizzaDinner.csproj|solutionrelative:pizzadinner\\data\\migrations\\20250331110444_creacioninicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6861EA67-78DD-4645-A74B-25B02BCD3548}|PizzaDinner\\PizzaDinner.csproj|c:\\users\\isaac\\desktop\\devprojects\\pizzadinner\\pizzadinner\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{6861EA67-78DD-4645-A74B-25B02BCD3548}|PizzaDinner\\PizzaDinner.csproj|solutionrelative:pizzadinner\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6861EA67-78DD-4645-A74B-25B02BCD3548}|PizzaDinner\\PizzaDinner.csproj|c:\\users\\isaac\\desktop\\devprojects\\pizzadinner\\pizzadinner\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6861EA67-78DD-4645-A74B-25B02BCD3548}|PizzaDinner\\PizzaDinner.csproj|solutionrelative:pizzadinner\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6861EA67-78DD-4645-A74B-25B02BCD3548}|PizzaDinner\\PizzaDinner.csproj|c:\\users\\isaac\\desktop\\devprojects\\pizzadinner\\pizzadinner\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6861EA67-78DD-4645-A74B-25B02BCD3548}|PizzaDinner\\PizzaDinner.csproj|solutionrelative:pizzadinner\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6861EA67-78DD-4645-A74B-25B02BCD3548}|PizzaDinner\\PizzaDinner.csproj|c:\\users\\isaac\\desktop\\devprojects\\pizzadinner\\pizzadinner\\models\\pizza.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6861EA67-78DD-4645-A74B-25B02BCD3548}|PizzaDinner\\PizzaDinner.csproj|solutionrelative:pizzadinner\\models\\pizza.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6861EA67-78DD-4645-A74B-25B02BCD3548}|PizzaDinner\\PizzaDinner.csproj|c:\\users\\isaac\\desktop\\devprojects\\pizzadinner\\pizzadinner\\pizzadinner.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -23,19 +39,67 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "20250331110444_CreacionInicial.cs",
+              "DocumentMoniker": "C:\\Users\\Isaac\\Desktop\\devprojects\\PizzaDinner\\PizzaDinner\\Data\\Migrations\\20250331110444_CreacionInicial.cs",
+              "RelativeDocumentMoniker": "PizzaDinner\\Data\\Migrations\\20250331110444_CreacionInicial.cs",
+              "ToolTip": "C:\\Users\\Isaac\\Desktop\\devprojects\\PizzaDinner\\PizzaDinner\\Data\\Migrations\\20250331110444_CreacionInicial.cs",
+              "RelativeToolTip": "PizzaDinner\\Data\\Migrations\\20250331110444_CreacionInicial.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T11:04:45.331Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Isaac\\Desktop\\devprojects\\PizzaDinner\\PizzaDinner\\Program.cs",
+              "RelativeDocumentMoniker": "PizzaDinner\\Program.cs",
+              "ToolTip": "C:\\Users\\Isaac\\Desktop\\devprojects\\PizzaDinner\\PizzaDinner\\Program.cs",
+              "RelativeToolTip": "PizzaDinner\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAACTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T11:00:16.728Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Isaac\\Desktop\\devprojects\\PizzaDinner\\PizzaDinner\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "PizzaDinner\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Isaac\\Desktop\\devprojects\\PizzaDinner\\PizzaDinner\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "PizzaDinner\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T10:35:03.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Pizza.cs",
+              "DocumentMoniker": "C:\\Users\\Isaac\\Desktop\\devprojects\\PizzaDinner\\PizzaDinner\\Models\\Pizza.cs",
+              "RelativeDocumentMoniker": "PizzaDinner\\Models\\Pizza.cs",
+              "ToolTip": "C:\\Users\\Isaac\\Desktop\\devprojects\\PizzaDinner\\PizzaDinner\\Models\\Pizza.cs",
+              "RelativeToolTip": "PizzaDinner\\Models\\Pizza.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T10:33:47.571Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Isaac\\Desktop\\devprojects\\PizzaDinner\\PizzaDinner\\appsettings.json",
               "RelativeDocumentMoniker": "PizzaDinner\\appsettings.json",
               "ToolTip": "C:\\Users\\Isaac\\Desktop\\devprojects\\PizzaDinner\\PizzaDinner\\appsettings.json",
               "RelativeToolTip": "PizzaDinner\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-31T09:26:49.835Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T09:26:49.835Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "PizzaDinner.csproj",
               "DocumentMoniker": "C:\\Users\\Isaac\\Desktop\\devprojects\\PizzaDinner\\PizzaDinner\\PizzaDinner.csproj",
               "RelativeDocumentMoniker": "PizzaDinner\\PizzaDinner.csproj",
