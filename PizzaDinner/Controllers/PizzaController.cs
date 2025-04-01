@@ -41,16 +41,16 @@ namespace PizzaDinner.Controllers
         /// <summary>
         /// Obtiene una pizza específica por su ID
         /// </summary>
-        /// <param name="id">ID numérico de la pizza</param>
+        /// <param name="id">ID (GUID) numérico de la pizza</param>
         /// <returns>Datos completos de la pizza solicitada</returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Pizza), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Pizza>> GetPizza(int id)
+        public async Task<ActionResult<Pizza>> GetPizza(Guid id)
         {
-            if (id <= 0)
+            if (id == Guid.Empty)
             {
                 return BadRequest(new ProblemDetails
                 {
@@ -76,7 +76,7 @@ namespace PizzaDinner.Controllers
         /// <summary>
         /// Actualiza los datos de una pizza existente
         /// </summary>
-        /// <param name="id">ID de la pizza a modificar</param>
+        /// <param name="id">ID único (GUID) de la pizza a modificar</param>
         /// <param name="pizza">Nuevos datos de la pizza</param>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -84,7 +84,7 @@ namespace PizzaDinner.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> PutPizza(int id, Pizza pizza)
+        public async Task<IActionResult> PutPizza(Guid id, Pizza pizza)
         {
             if (id != pizza.Id)
             {
@@ -162,15 +162,15 @@ namespace PizzaDinner.Controllers
         /// <summary>
         /// Elimina una pizza del menú
         /// </summary>
-        /// <param name="id">ID de la pizza a eliminar</param>
+        /// <param name="id">ID único (GUID) de la pizza a eliminar</param>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> DeletePizza(int id)
+        public async Task<IActionResult> DeletePizza(Guid id)
         {
-            if (id <= 0)
+            if (id == Guid.Empty)
             {
                 return BadRequest(new ProblemDetails
                 {
@@ -195,7 +195,7 @@ namespace PizzaDinner.Controllers
             return NoContent();
         }
 
-        private bool PizzaExists(int id)
+        private bool PizzaExists(Guid id)
         {
             return _context.Pizzas.Any(e => e.Id == id);
         }

@@ -5,9 +5,16 @@ namespace PizzaDinner.Models
 {
     public class Pizza
     {
+        /*
+        public Pizza()
+        {
+            Id = Guid.NewGuid();
+        }
+        */
+
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
 
         [Required]
         [MaxLength(50)]

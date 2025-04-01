@@ -34,7 +34,7 @@ namespace PizzaDinner
                     {
                         Name = "Isaac Martín",
                         Email = "isaacmartin.dev@gmail.com",
-                        Url = new Uri("https://x.com/isaurus"),
+                        Url = new Uri("https://x.com/isaurus_"),
                     },
                     License = new OpenApiLicense
                     {
