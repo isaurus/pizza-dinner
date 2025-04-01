@@ -11,36 +11,47 @@
         </member>
         <member name="M:PizzaDinner.Controllers.PizzaController.GetPizzas">
             <summary>
-            Obtiene todas las pizzas
+            Obtiene todas las pizzas disponibles
             </summary>
-            <returns>La lista de pizzas disponibles</returns>
+            <returns>Lista completa de pizzas del menú</returns>
         </member>
         <member name="M:PizzaDinner.Controllers.PizzaController.GetPizza(System.Int32)">
             <summary>
-            Obtiene una pizza por su ID
+            Obtiene una pizza específica por su ID
             </summary>
-            <param name="id">ID de la pizza</param>
-            <returns>La pizza solicitada</returns>
+            <param name="id">ID numérico de la pizza</param>
+            <returns>Datos completos de la pizza solicitada</returns>
         </member>
         <member name="M:PizzaDinner.Controllers.PizzaController.PutPizza(System.Int32,PizzaDinner.Models.Pizza)">
             <summary>
-            Actualiza una pizza existente
+            Actualiza los datos de una pizza existente
             </summary>
-            <param name="id">ID de la pizza a actualizar</param>
-            <param name="pizza">Datos actualizados de la pizza</param>
+            <param name="id">ID de la pizza a modificar</param>
+            <param name="pizza">Nuevos datos de la pizza</param>
         </member>
         <member name="M:PizzaDinner.Controllers.PizzaController.PostPizza(PizzaDinner.Models.Pizza)">
             <summary>
-            Crea una nueva pizza
+            Crea una nueva pizza en el menú
             </summary>
-            <param name="pizza">La pizza a añadir</param>
-            <returns>La pizza creada</returns>
+            <param name="pizza">Datos de la nueva pizza</param>
+            <returns>Datos de la pizza creada</returns>
+            <remarks>
+            Ejemplo de request:
+            
+            POST /api/Pizza
+            {
+                "name": "Margarita",
+                "description": "Pizza básica
+                "price": 10.99
+                "isVegetarian": true
+            }
+            </remarks>
         </member>
         <member name="M:PizzaDinner.Controllers.PizzaController.DeletePizza(System.Int32)">
             <summary>
-            Elimina una pizza
+            Elimina una pizza del menú
             </summary>
-            <param name="id">El ID de la pizza a eliminar</param>
+            <param name="id">ID de la pizza a eliminar</param>
         </member>
         <member name="T:PizzaDinner.Migrations.CreacionInicial">
             <inheritdoc />

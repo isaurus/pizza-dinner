@@ -20,59 +20,78 @@ namespace PizzaDinner.Controllers
     {
         private readonly AppDbContext _context;
 
-        // Inyección de dependencias en constructor
         public PizzaController(AppDbContext context)
         {
             _context = context;
         }
 
         /// <summary>
-        /// Obtiene todas las pizzas
+        /// Obtiene todas las pizzas disponibles
         /// </summary>
-        /// <returns>La lista de pizzas disponibles</returns>
+        /// <returns>Lista completa de pizzas del menú</returns>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Pizza>))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(IEnumerable<Pizza>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<Pizza>>> GetPizzas()
         {
-            var pizzas = await _context.Pizzas.ToListAsync();   // Almacena las pistas en una lista usando '_context' (polimorfismo)
+            var pizzas = await _context.Pizzas.ToListAsync();
             return Ok(pizzas);
         }
 
         /// <summary>
-        /// Obtiene una pizza por su ID
+        /// Obtiene una pizza específica por su ID
         /// </summary>
-        /// <param name="id">ID de la pizza</param>
-        /// <returns>La pizza solicitada</returns>
+        /// <param name="id">ID numérico de la pizza</param>
+        /// <returns>Datos completos de la pizza solicitada</returns>
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Pizza))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(Pizza), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<Pizza>> GetPizza(int id)
         {
+            if (id <= 0)
+            {
+                return BadRequest(new ProblemDetails
+                {
+                    Title = "ID inválido",
+                    Detail = "El ID debe ser un número positivo"
+                });
+            }
+
             var pizza = await _context.Pizzas.FindAsync(id);
 
             if (pizza == null)
             {
-                return NotFound();
+                return NotFound(new ProblemDetails
+                {
+                    Title = "Pizza no encontrada",
+                    Detail = $"No existe pizza con el ID {id}"
+                });
             }
 
-            return pizza;
+            return Ok(pizza);
         }
 
         /// <summary>
-        /// Actualiza una pizza existente
+        /// Actualiza los datos de una pizza existente
         /// </summary>
-        /// <param name="id">ID de la pizza a actualizar</param>
-        /// <param name="pizza">Datos actualizados de la pizza</param>
+        /// <param name="id">ID de la pizza a modificar</param>
+        /// <param name="pizza">Nuevos datos de la pizza</param>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> PutPizza(int id, Pizza pizza)
         {
             if (id != pizza.Id)
             {
-                return BadRequest();
+                return BadRequest(new ValidationProblemDetails(
+                    new Dictionary<string, string[]> {
+                        { "id", new[] { "El ID del parámetro no coincide con el ID de la pizza" } }
+                    }));
             }
 
             _context.Entry(pizza).State = EntityState.Modified;
@@ -81,48 +100,93 @@ namespace PizzaDinner.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!PizzaExists(id))
                 {
-                    return NotFound();
+                    return NotFound(new ProblemDetails
+                    {
+                        Title = "Pizza no encontrada",
+                        Detail = ex.Message
+                    });
                 }
-                else
+
+                return Conflict(new ProblemDetails
                 {
-                    throw;
-                }
+                    Title = "Conflicto de concurrencia",
+                    Detail = "La pizza fue modificada por otro usuario"
+                });
             }
 
             return NoContent();
         }
-
+        
         /// <summary>
-        /// Crea una nueva pizza
+        /// Crea una nueva pizza en el menú
         /// </summary>
-        /// <param name="pizza">La pizza a añadir</param>
-        /// <returns>La pizza creada</returns>
+        /// <param name="pizza">Datos de la nueva pizza</param>
+        /// <returns>Datos de la pizza creada</returns>
+        /// <remarks>
+        /// Ejemplo de request:
+        /// 
+        /// POST /api/Pizza
+        /// {
+        ///     "name": "Margarita",
+        ///     "description": "Pizza básica
+        ///     "price": 10.99
+        ///     "isVegetarian": true
+        /// }
+        /// </remarks>
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Pizza))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(Pizza), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<Pizza>> PostPizza(Pizza pizza)
         {
-            _context.Pizzas.Add(pizza);     // Añade la pizza pasada por parámetro a la tabla de la DB a través de '_context'
-            await _context.SaveChangesAsync();  // Guarda los datos
+            if (await _context.Pizzas.AnyAsync(p => p.Name == pizza.Name))
+            {
+                return Conflict(new ProblemDetails
+                {
+                    Title = "Pizza duplicada",
+                    Detail = $"Ya existe una pizza con el nombre {pizza.Name}"
+                });
+            }
 
-            return CreatedAtAction("GetPizza", new { id = pizza.Id }, pizza);   // Proporciona al cliente la URL del recurso creado
+            _context.Pizzas.Add(pizza);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetPizza", new { id = pizza.Id }, pizza);
         }
 
         /// <summary>
-        /// Elimina una pizza
+        /// Elimina una pizza del menú
         /// </summary>
-        /// <param name="id">El ID de la pizza a eliminar</param>
+        /// <param name="id">ID de la pizza a eliminar</param>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeletePizza(int id)
         {
+            if (id <= 0)
+            {
+                return BadRequest(new ProblemDetails
+                {
+                    Title = "ID inválido",
+                    Detail = "El ID debe ser un número positivo"
+                });
+            }
+
             var pizza = await _context.Pizzas.FindAsync(id);
             if (pizza == null)
             {
-                return NotFound();
+                return NotFound(new ProblemDetails
+                {
+                    Title = "Pizza no encontrada",
+                    Detail = $"No existe pizza con el ID {id}"
+                });
             }
 
             _context.Pizzas.Remove(pizza);
