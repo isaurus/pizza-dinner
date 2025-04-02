@@ -13,10 +13,8 @@ Solución tecnológica para una pizzería hipotética diseñada para escalar des
 
 ### Backend (API RESTful)
 - ✅ CRUD para gestión de:
-  - Pizzas (ingredientes, tamaños, precios)
-  - Pedidos (seguimiento, historial)
-  - Usuarios (roles: cliente, administrador)
-- ✅ Autenticación JWT básica
+  - Pizzas
+  - Pedidos
 - ✅ Documentación con Swagger/OpenAPI
 - ✅ Base de datos SQL Server (Entity Framework Core)
 
