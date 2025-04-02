@@ -15,18 +15,18 @@
             </summary>
             <returns>Lista completa de pizzas del menú</returns>
         </member>
-        <member name="M:PizzaDinner.Controllers.PizzaController.GetPizza(System.Guid)">
+        <member name="M:PizzaDinner.Controllers.PizzaController.GetPizza(System.Int32)">
             <summary>
             Obtiene una pizza específica por su ID
             </summary>
-            <param name="id">ID (GUID) numérico de la pizza</param>
+            <param name="idPizza">ID numérico de la pizza</param>
             <returns>Datos completos de la pizza solicitada</returns>
         </member>
-        <member name="M:PizzaDinner.Controllers.PizzaController.PutPizza(System.Guid,PizzaDinner.Models.Pizza)">
+        <member name="M:PizzaDinner.Controllers.PizzaController.PutPizza(System.Int32,PizzaDinner.Models.Pizza)">
             <summary>
             Actualiza los datos de una pizza existente
             </summary>
-            <param name="id">ID único (GUID) de la pizza a modificar</param>
+            <param name="idPizza">ID de la pizza a modificar</param>
             <param name="pizza">Nuevos datos de la pizza</param>
         </member>
         <member name="M:PizzaDinner.Controllers.PizzaController.PostPizza(PizzaDinner.Models.Pizza)">
@@ -47,11 +47,11 @@
             }
             </remarks>
         </member>
-        <member name="M:PizzaDinner.Controllers.PizzaController.DeletePizza(System.Guid)">
+        <member name="M:PizzaDinner.Controllers.PizzaController.DeletePizza(System.Int32)">
             <summary>
             Elimina una pizza del menú
             </summary>
-            <param name="id">ID único (GUID) de la pizza a eliminar</param>
+            <param name="idPizza">ID único de la pizza a eliminar</param>
         </member>
         <member name="T:PizzaDinner.Migrations.InitialCreate">
             <inheritdoc />
@@ -63,6 +63,18 @@
             <inheritdoc />
         </member>
         <member name="M:PizzaDinner.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:PizzaDinner.Migrations.AddOrderAndOrderItemEntities">
+            <inheritdoc />
+        </member>
+        <member name="M:PizzaDinner.Migrations.AddOrderAndOrderItemEntities.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:PizzaDinner.Migrations.AddOrderAndOrderItemEntities.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:PizzaDinner.Migrations.AddOrderAndOrderItemEntities.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

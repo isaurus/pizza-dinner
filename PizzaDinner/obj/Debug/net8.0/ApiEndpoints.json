@@ -2,7 +2,7 @@
   {
     "ContainingType": "PizzaDinner.Controllers.PizzaController",
     "Method": "GetPizzas",
-    "RelativePath": "api/Pizza",
+    "RelativePath": "pizzas",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -31,7 +31,7 @@
   {
     "ContainingType": "PizzaDinner.Controllers.PizzaController",
     "Method": "PostPizza",
-    "RelativePath": "api/Pizza",
+    "RelativePath": "pizzas",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -84,14 +84,14 @@
   {
     "ContainingType": "PizzaDinner.Controllers.PizzaController",
     "Method": "GetPizza",
-    "RelativePath": "api/Pizza/{id}",
+    "RelativePath": "pizzas/{idPizza}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Guid",
+        "Name": "idPizza",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -137,14 +137,14 @@
   {
     "ContainingType": "PizzaDinner.Controllers.PizzaController",
     "Method": "PutPizza",
-    "RelativePath": "api/Pizza/{id}",
+    "RelativePath": "pizzas/{idPizza}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Guid",
+        "Name": "idPizza",
+        "Type": "System.Int32",
         "IsRequired": true
       },
       {
@@ -200,14 +200,14 @@
   {
     "ContainingType": "PizzaDinner.Controllers.PizzaController",
     "Method": "DeletePizza",
-    "RelativePath": "api/Pizza/{id}",
+    "RelativePath": "pizzas/{idPizza}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Guid",
+        "Name": "idPizza",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

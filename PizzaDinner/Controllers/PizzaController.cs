@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PizzaDinner.Data;
 using PizzaDinner.Models;
-using Swashbuckle.AspNetCore.Annotations;
 
 namespace PizzaDinner.Controllers
 {
     /// <summary>
     /// Controlador para gestionar las operaciones CRUD de las pizzas
     /// </summary>
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("pizzas")]
     public class PizzaController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -32,6 +26,7 @@ namespace PizzaDinner.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Pizza>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        [Route("")]
         public async Task<ActionResult<IEnumerable<Pizza>>> GetPizzas()
         {
             var pizzas = await _context.Pizzas.ToListAsync();
@@ -41,16 +36,17 @@ namespace PizzaDinner.Controllers
         /// <summary>
         /// Obtiene una pizza específica por su ID
         /// </summary>
-        /// <param name="id">ID (GUID) numérico de la pizza</param>
+        /// <param name="idPizza">ID numérico de la pizza</param>
         /// <returns>Datos completos de la pizza solicitada</returns>
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("{idPizza}")]
         [ProducesResponseType(typeof(Pizza), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Pizza>> GetPizza(Guid id)
+        public async Task<ActionResult<Pizza>> GetPizza(int idPizza)
         {
-            if (id == Guid.Empty)
+            if (idPizza <= 0)
             {
                 return BadRequest(new ProblemDetails
                 {
@@ -59,14 +55,14 @@ namespace PizzaDinner.Controllers
                 });
             }
 
-            var pizza = await _context.Pizzas.FindAsync(id);
+            var pizza = await _context.Pizzas.FindAsync(idPizza);
 
             if (pizza == null)
             {
                 return NotFound(new ProblemDetails
                 {
                     Title = "Pizza no encontrada",
-                    Detail = $"No existe pizza con el ID {id}"
+                    Detail = $"No existe pizza con el ID {idPizza}"
                 });
             }
 
@@ -76,21 +72,22 @@ namespace PizzaDinner.Controllers
         /// <summary>
         /// Actualiza los datos de una pizza existente
         /// </summary>
-        /// <param name="id">ID único (GUID) de la pizza a modificar</param>
+        /// <param name="idPizza">ID de la pizza a modificar</param>
         /// <param name="pizza">Nuevos datos de la pizza</param>
-        [HttpPut("{id}")]
+        [HttpPut]
+        [Route("{idPizza}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> PutPizza(Guid id, Pizza pizza)
+        public async Task<IActionResult> PutPizza(int idPizza, Pizza pizza)
         {
-            if (id != pizza.Id)
+            if (idPizza != pizza.Id)
             {
                 return BadRequest(new ValidationProblemDetails(
                     new Dictionary<string, string[]> {
-                        { "id", new[] { "El ID del parámetro no coincide con el ID de la pizza" } }
+                        { "idPizza", new[] { "El ID del parámetro no coincide con el ID de la pizza" } }
                     }));
             }
 
@@ -102,7 +99,7 @@ namespace PizzaDinner.Controllers
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                if (!PizzaExists(id))
+                if (!PizzaExists(idPizza))
                 {
                     return NotFound(new ProblemDetails
                     {
@@ -142,6 +139,7 @@ namespace PizzaDinner.Controllers
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        [Route("")]
         public async Task<ActionResult<Pizza>> PostPizza(Pizza pizza)
         {
             if (await _context.Pizzas.AnyAsync(p => p.Name == pizza.Name))
@@ -162,15 +160,16 @@ namespace PizzaDinner.Controllers
         /// <summary>
         /// Elimina una pizza del menú
         /// </summary>
-        /// <param name="id">ID único (GUID) de la pizza a eliminar</param>
-        [HttpDelete("{id}")]
+        /// <param name="idPizza">ID único de la pizza a eliminar</param>
+        [HttpDelete]
+        [Route("{idPizza}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> DeletePizza(Guid id)
+        public async Task<IActionResult> DeletePizza(int idPizza)
         {
-            if (id == Guid.Empty)
+            if (idPizza <= 0)
             {
                 return BadRequest(new ProblemDetails
                 {
@@ -179,13 +178,13 @@ namespace PizzaDinner.Controllers
                 });
             }
 
-            var pizza = await _context.Pizzas.FindAsync(id);
+            var pizza = await _context.Pizzas.FindAsync(idPizza);
             if (pizza == null)
             {
                 return NotFound(new ProblemDetails
                 {
                     Title = "Pizza no encontrada",
-                    Detail = $"No existe pizza con el ID {id}"
+                    Detail = $"No existe pizza con el ID {idPizza}"
                 });
             }
 
@@ -195,9 +194,9 @@ namespace PizzaDinner.Controllers
             return NoContent();
         }
 
-        private bool PizzaExists(Guid id)
+        private bool PizzaExists(int idPizza)
         {
-            return _context.Pizzas.Any(e => e.Id == id);
+            return _context.Pizzas.Any(e => e.Id == idPizza);
         }
     }
 }

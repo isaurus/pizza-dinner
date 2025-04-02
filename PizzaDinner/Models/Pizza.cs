@@ -7,7 +7,8 @@ namespace PizzaDinner.Models
     public class Pizza
     {
         [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(50)]
@@ -22,6 +23,6 @@ namespace PizzaDinner.Models
 
         public bool IsVegetarian { get; set; }
 
-        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();     // Propiedad de Navegación 'One-To-Many'
     }
 }

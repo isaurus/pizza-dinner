@@ -43,7 +43,7 @@ namespace PizzaDinner.Data
             modelBuilder.Entity<Pizza>().HasData(
                 new Pizza
                 {
-                    Id = Guid.Parse("a18be9c0-aa65-4af8-bd17-00bd9344e575"), // GUID fijo
+                    Id = 1,
                     Name = "Margarita",
                     Description = "Clásica pizza con tomate y mozzarella",
                     Price = 8.99m,
@@ -51,7 +51,7 @@ namespace PizzaDinner.Data
                 },
                 new Pizza
                 {
-                    Id = Guid.Parse("c12d4abb-3e6d-457a-9b9e-9e7aaf4c6c7c"), // Otro GUID fijo
+                    Id = 2,
                     Name = "Pepperoni",
                     Description = "Pizza con pepperoni y queso fundido",
                     Price = 10.50m,
