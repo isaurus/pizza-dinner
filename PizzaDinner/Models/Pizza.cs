@@ -1,20 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using PizzaDinner.Backend.WebApi.Models;
 
 namespace PizzaDinner.Models
 {
     public class Pizza
     {
-        /*
-        public Pizza()
-        {
-            Id = Guid.NewGuid();
-        }
-        */
-
         [Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [Required]
         [MaxLength(50)]
@@ -28,5 +21,7 @@ namespace PizzaDinner.Models
         public decimal Price { get; set; }
 
         public bool IsVegetarian { get; set; }
+
+        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }

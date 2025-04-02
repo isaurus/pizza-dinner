@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "ewoyj59yJByt7ZRRXi/mreznfgbO7hQEnt4sg44Fip0=",
-  "Source": "PizzaDinner",
-  "BasePath": "_content/PizzaDinner",
+  "Hash": "wJRe4U01F1YalN08HTpOpPo6nZELcbLRKeG6UNR0/vc=",
+  "Source": "PizzaDinner.Backend.WebApi",
+  "BasePath": "_content/PizzaDinner.Backend.WebApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

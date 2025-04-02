@@ -288,4 +288,3 @@ C:\Users\Isaac\Desktop\devprojects\PizzaDinner\PizzaDinner\bin\Debug\net8.0\runt
 C:\Users\Isaac\Desktop\devprojects\PizzaDinner\PizzaDinner\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\Isaac\Desktop\devprojects\PizzaDinner\PizzaDinner\bin\Debug\net8.0\PizzaDinner.xml
 C:\Users\Isaac\Desktop\devprojects\PizzaDinner\PizzaDinner\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll
-C:\Users\Isaac\Desktop\devprojects\PizzaDinner\PizzaDinner\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
