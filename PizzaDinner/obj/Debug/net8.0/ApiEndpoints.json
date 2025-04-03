@@ -1,5 +1,77 @@
 [
   {
+    "ContainingType": "PizzaDinner.Backend.WebApi.Controllers.OrderController",
+    "Method": "GetOrders",
+    "RelativePath": "orders",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PizzaDinner.Backend.WebApi.Models.Order, PizzaDinner.Backend.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PizzaDinner.Backend.WebApi.Controllers.OrderController",
+    "Method": "GetOrder",
+    "RelativePath": "orders",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idOrder",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PizzaDinner.Backend.WebApi.Models.Order",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PizzaDinner.Backend.WebApi.Controllers.OrderController",
+    "Method": "PostOrder",
+    "RelativePath": "orders",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "order",
+        "Type": "PizzaDinner.Backend.WebApi.Models.Order",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PizzaDinner.Backend.WebApi.Models.Order",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "PizzaDinner.Controllers.PizzaController",
     "Method": "GetPizzas",
     "RelativePath": "pizzas",

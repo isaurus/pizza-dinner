@@ -1,7 +1,10 @@
 using System.IO;
 using System.Reflection;
+using FluentValidation.AspNetCore;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using PizzaDinner.Backend.WebApi.Validations;
 using PizzaDinner.Data;
 
 namespace PizzaDinner
@@ -15,14 +18,24 @@ namespace PizzaDinner
             // Add services to the container.
 
             // Contenedor de DI para registar el 'DbContext'
-            builder.Services.AddDbContext<AppDbContextOld>(options =>
+            builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))    // Cadena de conexión en 'appsettings.json'
             );
+
+            // Registrar servicios de AutoMapper
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            // Registrar servicios de FluentValidation
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddValidatorsFromAssemblyContaining<CreatePizzaDtoValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<CreateOrderDtoValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<OrderItemDtoValidator>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
 
+            // Registrar servicios de Swagger
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo

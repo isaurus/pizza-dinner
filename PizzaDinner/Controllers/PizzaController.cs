@@ -12,9 +12,9 @@ namespace PizzaDinner.Controllers
     [Route("pizzas")]
     public class PizzaController : ControllerBase
     {
-        private readonly AppDbContextOld _context;
+        private readonly AppDbContext _context;
 
-        public PizzaController(AppDbContextOld context)
+        public PizzaController(AppDbContext context)
         {
             _context = context;
         }
