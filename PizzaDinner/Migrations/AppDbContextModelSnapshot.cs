@@ -10,7 +10,7 @@ using PizzaDinner.Data;
 
 namespace PizzaDinner.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(AppDbContextOld))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -12,9 +12,9 @@ namespace PizzaDinner.Controllers
     [Route("pizzas")]
     public class PizzaController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly AppDbContextOld _context;
 
-        public PizzaController(AppDbContext context)
+        public PizzaController(AppDbContextOld context)
         {
             _context = context;
         }
@@ -24,9 +24,9 @@ namespace PizzaDinner.Controllers
         /// </summary>
         /// <returns>Lista completa de pizzas del menú</returns>
         [HttpGet]
+        [Route("")]
         [ProducesResponseType(typeof(IEnumerable<Pizza>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [Route("")]
         public async Task<ActionResult<IEnumerable<Pizza>>> GetPizzas()
         {
             var pizzas = await _context.Pizzas.ToListAsync();
@@ -135,11 +135,11 @@ namespace PizzaDinner.Controllers
         /// }
         /// </remarks>
         [HttpPost]
+        [Route("")]
         [ProducesResponseType(typeof(Pizza), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [Route("")]
         public async Task<ActionResult<Pizza>> PostPizza(Pizza pizza)
         {
             if (await _context.Pizzas.AnyAsync(p => p.Name == pizza.Name))

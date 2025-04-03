@@ -15,7 +15,7 @@ namespace PizzaDinner
             // Add services to the container.
 
             // Contenedor de DI para registar el 'DbContext'
-            builder.Services.AddDbContext<AppDbContext>(options =>
+            builder.Services.AddDbContext<AppDbContextOld>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))    // Cadena de conexión en 'appsettings.json'
             );
 

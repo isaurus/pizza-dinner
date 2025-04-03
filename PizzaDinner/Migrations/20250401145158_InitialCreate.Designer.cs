@@ -11,7 +11,7 @@ using PizzaDinner.Data;
 
 namespace PizzaDinner.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(AppDbContextOld))]
     [Migration("20250401145158_InitialCreate")]
     partial class InitialCreate
     {
