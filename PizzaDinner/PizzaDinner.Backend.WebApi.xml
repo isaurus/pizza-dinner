@@ -53,28 +53,178 @@
             </summary>
             <param name="idPizza">ID único de la pizza a eliminar</param>
         </member>
-        <member name="T:PizzaDinner.Migrations.InitialCreate">
+        <member name="P:PizzaDinner.Backend.WebApi.Models.CreateOrderModel.CustomerName">
+            <summary>
+            Nombre de usuario (Máx. 50 caracteres).
+            </summary>
+            <example>John Doe</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.CreateOrderModel.CustomerEmail">
+            <summary>
+            Email de usuario (Máx. 100 caracteres)
+            </summary>
+            <example>johndoe@example.com</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.CreateOrderModel.DeliveryAddress">
+            <summary>
+            Dirección de envío (Máx. 255 caracteres)
+            </summary>
+            <example>Calle Triana, 5</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.CreateOrderModel.Items">
+            <summary>
+            Lista de artículos del pedido (mín. 1 elemento).
+            </summary>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.CreatePizzaModel.Name">
+            <summary>
+            Nombre de la pizza (Máx. 50 caracteres).
+            </summary>
+            <example>Carbonara</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.CreatePizzaModel.Description">
+            <summary>
+            Descripción de la pizza (Máx. 255 caracteres).
+            </summary>
+            <example>Deliciosa pizza cubierta de queso fundido</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.CreatePizzaModel.Price">
+            <summary>
+            Precio de la pizza (Mayor que 0).
+            </summary>
+            <example>9.99</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.CreatePizzaModel.IsVegetarian">
+            <summary>
+            Tipo de pizza (vegetariana o no vegetariana)
+            </summary>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.OrderItemModel.PizzaId">
+            <summary>
+            El ID de la pizza (Mayor que 0).
+            </summary>
+            <example>33</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.OrderItemModel.Quantity">
+            <summary>
+            La cantidad de pizzas de un tipo (Mayor que 0).
+            </summary>
+            <example>2</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.OrderItemResponseModel.PizzaName">
+            <summary>
+            Nombre de la pizza (Máx. 50 caracteres).
+            </summary>
+            <example>Cabramelizada</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.OrderItemResponseModel.Quantity">
+            <summary>
+            Cantidad de una misma pizza (Mayor que 0).
+            </summary>
+            <example>2</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.OrderItemResponseModel.PriceAtOrderTime">
+            <summary>
+            Precio de la pizza en el momento del pedido
+            </summary>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.OrderResponseModel.Id">
+            <summary>
+            ID único del pedido (Mayor que 0).
+            </summary>
+            <example>33</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.OrderResponseModel.OrderDate">
+            <summary>
+            Fecha en la que se realiza el pedido.
+            </summary>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.OrderResponseModel.CustomerName">
+            <summary>
+            Nombre del cliente (Máx. 50 caracteres).
+            </summary>
+            <example>John Doe</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.OrderResponseModel.DeliveryAddress">
+            <summary>
+            Dirección de envío del pedido (Máx. 255 caracteres).
+            </summary>
+            <example>Calle Triana, 5</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.OrderResponseModel.TotalPrice">
+            <summary>
+            Precio total del pedido (Mayor que 0).
+            </summary>
+            <example>23.95</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.OrderResponseModel.Status">
+            <summary>
+            Estado del pedido.
+            </summary>
+            <example>Pending</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.OrderResponseModel.Items">
+            <summary>
+            Ítems en el pedido
+            </summary>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.PizzaResponseModel.Id">
+            <summary>
+            ID único de la pizza.
+            </summary>
+            <example>5</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.PizzaResponseModel.Name">
+            <summary>
+            Nombre de la pizza (Máx. 50 caracteres).
+            </summary>
+            <example>Cabramelizada</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.PizzaResponseModel.Description">
+            <summary>
+            Descripción de la pizza (Máx. 255 caracteres).
+            </summary>
+            <example>Más dulce que nunca</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.PizzaResponseModel.Price">
+            <summary>
+            Precio de la pizza (Mayor que 0)
+            </summary>
+            <example>10.99</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.PizzaResponseModel.IsVegetarian">
+            <summary>
+            Si es o no vegetariana
+            </summary>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.UpdatePizzaModel.Name">
+            <summary>
+            Nuevo nombre de la pizza (Máx. 50 caracteres).
+            </summary>
+            <example>Cabramelizada</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.UpdatePizzaModel.Description">
+            <summary>
+            Nueva descripción de la pizza (Máx. 255 caracteres).
+            </summary>
+            <example>Dulce como nunca antes</example>
+        </member>
+        <member name="P:PizzaDinner.Backend.WebApi.Models.UpdatePizzaModel.Price">
+            <summary>
+            Nuevo precio de la pizza (Mayor que 0).
+            </summary>
+            <example>11.99</example>
+        </member>
+        <member name="T:PizzaDinner.Backend.WebApi.Migrations.InitialCreate">
             <inheritdoc />
         </member>
-        <member name="M:PizzaDinner.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:PizzaDinner.Backend.WebApi.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:PizzaDinner.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:PizzaDinner.Backend.WebApi.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:PizzaDinner.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:PizzaDinner.Migrations.AddOrderAndOrderItemEntities">
-            <inheritdoc />
-        </member>
-        <member name="M:PizzaDinner.Migrations.AddOrderAndOrderItemEntities.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:PizzaDinner.Migrations.AddOrderAndOrderItemEntities.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:PizzaDinner.Migrations.AddOrderAndOrderItemEntities.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:PizzaDinner.Backend.WebApi.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

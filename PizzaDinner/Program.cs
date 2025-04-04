@@ -23,13 +23,13 @@ namespace PizzaDinner
             );
 
             // Registrar servicios de AutoMapper
-            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // Registrar servicios de FluentValidation
             builder.Services.AddFluentValidationAutoValidation();
-            builder.Services.AddValidatorsFromAssemblyContaining<CreatePizzaDtoValidator>();
-            builder.Services.AddValidatorsFromAssemblyContaining<CreateOrderDtoValidator>();
-            builder.Services.AddValidatorsFromAssemblyContaining<OrderItemDtoValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<CreatePizzaModelValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<CreateOrderModelValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<OrderItemModelValidator>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

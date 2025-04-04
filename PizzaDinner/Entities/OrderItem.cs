@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using PizzaDinner.Models;
+﻿using PizzaDinner.Models;
 
 namespace PizzaDinner.Backend.WebApi.Models
 {

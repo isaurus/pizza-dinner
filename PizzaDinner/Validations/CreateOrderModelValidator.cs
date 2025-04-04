@@ -1,13 +1,13 @@
 ﻿using FluentValidation;
-using PizzaDinner.Backend.WebApi.DTOs;
+using PizzaDinner.Backend.WebApi.Models;
 
 namespace PizzaDinner.Backend.WebApi.Validations
 {
     using FluentValidation;
 
-    public class CreateOrderDtoValidator : AbstractValidator<CreateOrderDto>
+    public class CreateOrderModelValidator : AbstractValidator<CreateOrderModel>
     {
-        public CreateOrderDtoValidator()
+        public CreateOrderModelValidator()
         {
             RuleFor(o => o.CustomerName)
                 .NotEmpty().WithMessage("El nombre del cliente es obligatorio")
@@ -20,7 +20,7 @@ namespace PizzaDinner.Backend.WebApi.Validations
 
             RuleFor(o => o.DeliveryAddress)
                 .NotEmpty().WithMessage("La dirección es obligatoria")
-                .MaximumLength(200).WithMessage("Máximo 200 caracteres");
+                .MaximumLength(255).WithMessage("Máximo 255 caracteres");
 
             RuleFor(o => o.Items)
                 .NotEmpty().WithMessage("El pedido debe contener al menos un artículo")

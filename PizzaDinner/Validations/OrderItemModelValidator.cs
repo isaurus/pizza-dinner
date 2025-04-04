@@ -1,11 +1,11 @@
 ﻿namespace PizzaDinner.Backend.WebApi.Validations
 {
     using FluentValidation;
-    using PizzaDinner.Backend.WebApi.DTOs;
+    using PizzaDinner.Backend.WebApi.Models;
 
-    public class OrderItemDtoValidator : AbstractValidator<OrderItemDto>
+    public class OrderItemModelValidator : AbstractValidator<OrderItemModel>
     {
-        public OrderItemDtoValidator()
+        public OrderItemModelValidator()
         {
             RuleFor(i => i.PizzaId)
                 .GreaterThan(0).WithMessage("El ID de la pizza es inválido");

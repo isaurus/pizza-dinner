@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using PizzaDinner.Backend.WebApi.DTOs;
+using PizzaDinner.Backend.WebApi.Models;
 
 namespace PizzaDinner.Backend.WebApi.Validations
 {
-    public class CreatePizzaDtoValidator : AbstractValidator<CreatePizzaDto>
+    public class CreatePizzaModelValidator : AbstractValidator<CreatePizzaModel>
     {
-        public CreatePizzaDtoValidator()
+        public CreatePizzaModelValidator()
         {
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("El nombre de la pizza es obligatorio")

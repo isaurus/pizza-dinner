@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PizzaDinner.Backend.WebApi.Models;
 using PizzaDinner.Data;
@@ -66,11 +66,6 @@ namespace PizzaDinner.Backend.WebApi.Controllers
             
             return CreatedAtAction("GetOrders", new {id = order.Id}, order);
         }
-        /*
-        // PUT
-        public Task<IActionResult> PutOrder(int idOrder, Order order)
-        {
-
-        }*/
     }
 }
+*/

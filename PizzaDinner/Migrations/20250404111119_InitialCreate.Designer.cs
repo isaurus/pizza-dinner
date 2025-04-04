@@ -9,11 +9,11 @@ using PizzaDinner.Data;
 
 #nullable disable
 
-namespace PizzaDinner.Migrations
+namespace PizzaDinner.Backend.WebApi.Migrations
 {
-    [DbContext(typeof(AppDbContextOld))]
-    [Migration("20250402134206_AddOrderAndOrderItemEntities")]
-    partial class AddOrderAndOrderItemEntities
+    [DbContext(typeof(AppDbContext))]
+    [Migration("20250404111119_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,11 @@ namespace PizzaDinner.Migrations
 
             modelBuilder.Entity("PizzaDinner.Backend.WebApi.Models.Order", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CustomerEmail")
                         .IsRequired()
@@ -46,13 +48,17 @@ namespace PizzaDinner.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(5,2)");
+                        .HasColumnType("decimal(5, 2)");
 
                     b.HasKey("Id");
 
@@ -61,21 +67,25 @@ namespace PizzaDinner.Migrations
 
             modelBuilder.Entity("PizzaDinner.Backend.WebApi.Models.OrderItem", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<Guid>("PizzaId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PizzaId")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("PriceAtOrderTime")
                         .HasColumnType("decimal(5, 2)");
 
                     b.Property<int>("Quantity")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.HasKey("Id");
 
@@ -88,9 +98,11 @@ namespace PizzaDinner.Migrations
 
             modelBuilder.Entity("PizzaDinner.Models.Pizza", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -98,7 +110,9 @@ namespace PizzaDinner.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<bool>("IsVegetarian")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -115,7 +129,7 @@ namespace PizzaDinner.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a18be9c0-aa65-4af8-bd17-00bd9344e575"),
+                            Id = 1,
                             Description = "Clásica pizza con tomate y mozzarella",
                             IsVegetarian = true,
                             Name = "Margarita",
@@ -123,7 +137,7 @@ namespace PizzaDinner.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c12d4abb-3e6d-457a-9b9e-9e7aaf4c6c7c"),
+                            Id = 2,
                             Description = "Pizza con pepperoni y queso fundido",
                             IsVegetarian = false,
                             Name = "Pepperoni",

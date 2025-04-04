@@ -46,6 +46,7 @@ namespace PizzaDinner.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<Pizza>> GetPizza(int idPizza)
         {
+            
             if (idPizza <= 0)
             {
                 return BadRequest(new ProblemDetails
